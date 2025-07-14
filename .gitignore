@@ -1,0 +1,6 @@
+/autom4te.cache
+/src/.deps
+/src/.libs
+*.o
+*.lo
+*.la
