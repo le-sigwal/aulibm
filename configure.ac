@@ -61,7 +61,9 @@ AM_INIT_AUTOMAKE
 dnl AC_PROG_MAKE_SET
 
 dnl Determines the kind of architecture to use
+AC_CANONICAL_BUILD
 AC_CANONICAL_HOST
+AC_CANONICAL_TARGET
 
 # Testing existence of "-mpc64" compiler option
 
@@ -86,6 +88,12 @@ i?86-*-cygwin*)
 	AC_DEFINE(IX86_CPU,1,
 				[Define this if your system is ix86-based]) 
 	;;
+i?86-*-mingw*)
+	AC_DEFINE(MATHLIB_MINGW,1,
+	          [Define this if your system is a mingw based ix86 or compatible])
+	AC_DEFINE(IX86_CPU,1,
+				[Define this if your system is ix86-based]) 
+	;;
 i?86-apple*)
 	AC_DEFINE(MATHLIB_I86_MACOSX,1,
 				[Define this if your system is a ix86 running MacOSX])
@@ -105,7 +113,7 @@ aarch64-*-linux-*)
 		[Define this if your system is ARM64 based])
 	;;
 *)
-	AC_MSG_ERROR(Sorry, this system is not yet supported by mathlib)
+	AC_MSG_ERROR([Sorry, this system build=$build, host=$host, target=$target is not yet supported by mathlib])
 esac
 
 AC_CHECK_HEADERS([fenv.h])
